@@ -1,0 +1,28 @@
+name: "OpenSSL xcframework CI"
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - '*'
+jobs:
+  Build-v3:
+    name: Build 3.x
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Build
+        run: ./build.sh openssl-3.0.1
+        shell: sh
+  Build-v1_1:
+    name: Build 1.1x
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Build
+        run: ./build.sh OpenSSL_1_1_1m
+        shell: sh
