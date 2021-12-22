@@ -11,16 +11,20 @@ if [ "$tag" = "" ]; then
   tag="openssl-3.0.1"
 fi
 
-[ -d openssl ] && rm -rf openssl
+[ -d "$tag" ] && rm -rf "$tag"
 
-git clone --depth=1 -b $tag https://github.com/openssl/openssl.git openssl
+git clone --depth=1 -b $tag https://github.com/openssl/openssl.git "$tag/openssl"
 
-cp -f 15-ios.conf openssl/Configurations/15-ios.conf
+cp -f 15-ios.conf "$tag/openssl/Configurations/15-ios.conf"
 
-pushd openssl
-cp ../build-ios-xcframework.sh ./
+pushd "$tag/openssl"
+cp ../../build-ios-xcframework.sh ./
 ./build-ios-xcframework.sh
-cp -r out/OpenSSL.xcframework $Self/
+cp -r out/OpenSSL.xcframework ../
 popd
 
 popd
+
+if [ -d "$tag/OpenSSL.xcframework" ]; then
+  echo -e "\033[34m$tag/OpenSSL.xcframework\033[0m created."
+fi
