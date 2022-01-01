@@ -66,14 +66,23 @@ build_openssl_lib --prefix="${target}/out/ios-arm64_x86_64-simulator/OpenSSL.fra
                     iossimulator-xcrun \
                     CC=${xcrun_clang}
 
+export IPHONEOS_DEPLOYMENT_TARGET=13.0
+
+build_openssl_lib --prefix="${target}/out/ios-arm64_x86_64-maccatalyst/OpenSSL.framework" \
+                    maccatalyst-xcrun \
+                    CC=${xcrun_clang}
+
 build_openssl_framework "${target}/out/ios-arm64/OpenSSL.framework"
 build_openssl_framework "${target}/out/ios-arm64_x86_64-simulator/OpenSSL.framework"
+build_openssl_framework "${target}/out/ios-arm64_x86_64-maccatalyst/OpenSSL.framework"
 
 xcodebuild -create-xcframework \
            -framework "${target}/out/ios-arm64/OpenSSL.framework" \
            -framework "${target}/out/ios-arm64_x86_64-simulator/OpenSSL.framework" \
+           -framework "${target}/out/ios-arm64_x86_64-maccatalyst/OpenSSL.framework" \
            -output \
            "${target}/out/OpenSSL.xcframework"
 
 cleanup "${target}/out/ios-arm64" \
-        "${target}/out/ios-arm64_x86_64-simulator"
+        "${target}/out/ios-arm64_x86_64-simulator" \
+        "${target}/out/ios-arm64_x86_64-maccatalyst"

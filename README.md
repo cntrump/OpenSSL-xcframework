@@ -2,6 +2,10 @@
 
 OpenSSL.xcframework for iOS developers
 
+- [x] iOS 9.0 (`arm64`)
+- [x] iOS simulator 9.0 (`x86_64` and `arm64`)
+- [x] MacCatalyst 13.0 (`x86_64` and `arm64`)
+
 ## How to build
 
 Build openssl 1.1.x
