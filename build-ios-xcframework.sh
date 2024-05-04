@@ -2,18 +2,16 @@
 
 set -e
 
-export IPHONEOS_DEPLOYMENT_TARGET=9.0
-
 target=$(cd "$(dirname "$0")";pwd)
 
 [ -d "${target}/out" ] && rm -rf "${target}/out"
 
 build_openssl_lib() {
-    ./Configure $@
+    ./Configure enable-tls1_3 $@
 
     make clean
     make -j
-    make install
+    make install_sw
 }
 
 write_openssl_modulemap() {
@@ -54,23 +52,14 @@ cleanup() {
     rm -rf $@
 }
 
-xcrun_clang=$(xcrun --find clang)
-
 build_openssl_lib --prefix="${target}/out/ios-arm64/OpenSSL.framework" \
-                    ios64-xcrun \
-                    CC=${xcrun_clang}
-
-export ARCHS="arm64;x86_64"
+                    apple-universal-ios
 
 build_openssl_lib --prefix="${target}/out/ios-arm64_x86_64-simulator/OpenSSL.framework" \
-                    iossimulator-xcrun \
-                    CC=${xcrun_clang}
-
-export IPHONEOS_DEPLOYMENT_TARGET=13.0
+                    apple-universal-iossim
 
 build_openssl_lib --prefix="${target}/out/ios-arm64_x86_64-maccatalyst/OpenSSL.framework" \
-                    maccatalyst-xcrun \
-                    CC=${xcrun_clang}
+                    apple-universal-maccatalyst
 
 build_openssl_framework "${target}/out/ios-arm64/OpenSSL.framework"
 build_openssl_framework "${target}/out/ios-arm64_x86_64-simulator/OpenSSL.framework"

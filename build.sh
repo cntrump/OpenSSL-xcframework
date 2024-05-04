@@ -8,14 +8,14 @@ pushd $Self
 
 tag=$1
 if [ "$tag" = "" ]; then
-  tag="openssl-3.0.1"
+  tag="openssl-3.3.0"
 fi
 
 [ -d "$tag" ] && rm -rf "$tag"
 
 git clone --depth=1 -b $tag https://github.com/openssl/openssl.git "$tag/openssl"
 
-cp -f 15-ios.conf "$tag/openssl/Configurations/15-ios.conf"
+cp -f 15-apple-universal.conf "$tag/openssl/Configurations/15-apple-universal.conf"
 
 pushd "$tag/openssl"
 cp ../../build-ios-xcframework.sh ./
