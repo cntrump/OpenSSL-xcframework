@@ -11,16 +11,16 @@ OpenSSL.xcframework for iOS developers
 Build openssl 1.1.x
 
 ```
-./build.sh OpenSSL_1_1_1m
+./build.sh OpenSSL_1_1_1w
 ```
 
 Build openssl 3.x
 
 ```
-./build.sh openssl-3.0.1
+./build.sh openssl-3.3.0
 ```
 
-`OpenSSL_1_1_1m` and `openssl-3.0.1` are [openssl tags](https://github.com/openssl/openssl/tags)
+`OpenSSL_1_1_1w` and `openssl-3.3.0` are [openssl tags](https://github.com/openssl/openssl/tags)
 
 ## About modulemap
 
