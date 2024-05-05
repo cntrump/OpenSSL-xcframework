@@ -2,9 +2,16 @@
 
 OpenSSL.xcframework for iOS developers
 
+- [x] macOS 10.9+ (`x86_64` and `arm64`)
 - [x] iOS 11.0+ (`arm64`)
 - [x] iOS simulator 11.0+ (`x86_64` and `arm64`)
-- [x] macOS 10.15+ (MacCatalyst) (`x86_64` and `arm64`)
+- [x] MacCatalyst (macOS 10.15+) (`x86_64` and `arm64`)
+- [x] tvOS 9.0+ (`arm64`)
+- [x] tvOS simulator 9.0+ (`x86_64` and `arm64`)
+- [x] WatchOS 9.0+ (`arm64_32`)
+- [x] WatchOS simulator 9.0+ (`x86_64` and `arm64`)
+- [x] VisionOS 1.0+ (`arm64`)
+- [x] VisionOS simulator 1.0+ (`x86_64` and `arm64`)
 
 ## How to build
 
